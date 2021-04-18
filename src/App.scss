@@ -22,8 +22,37 @@
       cursor: pointer;
       height: 20%;
       margin: 5px;
-      padding: 8px;
       width: 20%;
+
+      .card-inner {
+        border-radius: inherit;
+        height: 100%;
+        position: relative;
+        width: 100%;
+        transition: transform 0.8s;
+        transform-style: preserve-3d;
+
+        .card-front,
+        .card-back {
+          backface-visibility: hidden;
+          height: 100%;
+          position: absolute;
+          width: 100%;
+        }
+
+        .card-front {
+          background-color: red;
+        }
+
+        .card-back {
+          background-color: blue;
+          color: white;
+          font-size: 22px;
+          font-weight: 600;
+          transform: rotateY(180deg);
+          text-align: center;
+        }
+      }
     }
   }
 }

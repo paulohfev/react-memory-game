@@ -1,23 +1,40 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
 
 const App = () => {
+  const shuffleCards = () => {
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+      let randomPos = Math.floor(Math.random() * 12);
+      card.style.order = randomPos;
+    });
+  }
+
+  const flipCard = (event) => {
+    event.target.parentNode.style.transform = 'rotateY(180deg)';
+  }
+
+  const cardsData = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6];
+  const cardsList = cardsData.map((value) => {
+    return (
+      <div key={Math.floor(Math.random() * 1000)} className='card' onClick={flipCard}>
+        <div className='card-inner'>
+          <div className='card-front'></div>
+          <div className='card-back'>{value}</div>
+        </div>
+      </div>
+    );
+  });
+
+  useEffect(() => {
+    shuffleCards();
+  }, []);
+
   return (
     <div className='container'>
       <section className='cards-container'>
         <div className='cards'>
-          <div className='card'>1</div>
-          <div className='card'>2</div>
-          <div className='card'>3</div>
-          <div className='card'>4</div>
-          <div className='card'>5</div>
-          <div className='card'>6</div>
-          <div className='card'>7</div>
-          <div className='card'>8</div>
-          <div className='card'>9</div>
-          <div className='card'>10</div>
-          <div className='card'>11</div>
-          <div className='card'>12</div>
+          {cardsList}
         </div>
       </section>
     </div>
