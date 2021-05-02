@@ -27,26 +27,18 @@ const App = () => {
   }
 
   const compareCards = (selectedCards) => {
-    console.log(selectedCards)
+    const [firstCard, secondCard] = selectedCards;
+
     if (selectedCards.length === 2) {
-      if (selectedCards[0].value === selectedCards[1].value) {
-        console.log('matched!')
-      } else {
-        console.log('not matched!');
-        const flippedCards = cards.map(c => {
-          if (c.id === selectedCards[0].id) {
-            return {
-              ...c,
-              visible: false,
-            }
-          } else if (c.id === selectedCards[1].id) {
-            return {
-              ...c,
-              visible: false,
-            }
-          } else {
-            return c;
-          }
+      if (firstCard.value !== secondCard.value) {
+        const flippedCards = cards.map(card => {
+          const changedCardVisibility = {
+            ...card,
+            visible: false,
+          };
+          const isSelectedCard = card.id === firstCard.id || card.id === secondCard.id;
+
+          return isSelectedCard ? changedCardVisibility : card;
         });
 
         setCards(flippedCards);
