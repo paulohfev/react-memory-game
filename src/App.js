@@ -1,86 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import cardsData from './data/cardsData';
+import React from 'react';
+import CardsList from './components/CardsList';
 import './App.scss';
 
 const App = () => {
-  const [cards, setCards] = useState(cardsData);
-  const [selectedCards, setSelectedCards] = useState([]);
-
-  const shuffleCards = () => {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      let randomPos = Math.floor(Math.random() * 12);
-      card.style.order = randomPos;
-    });
-  }
-
-  const compareCards = (selectedCards) => {
-    const [firstCard, secondCard] = selectedCards;
-
-    if (selectedCards.length === 2) {
-      if (firstCard.value !== secondCard.value) {
-        const flippedCards = cards.map(card => {
-          const changedCardVisibility = {
-            ...card,
-            visible: false,
-          };
-          const isSelectedCard = card.id === firstCard.id || card.id === secondCard.id;
-
-          return isSelectedCard ? changedCardVisibility : card;
-        });
-
-        setCards(flippedCards);
-      }
-
-      setSelectedCards([]);
-    }
-  }
-
-  const flipCard = (card) => {
-    const updateCardVisibility = card => {
-      return cards.map(c => {
-        const changedCardVisibility = {
-          ...c,
-          visible: true,
-        };
-
-        return c.id === card.id ? changedCardVisibility : c;
-      })
-    }
-
-    setCards(updateCardVisibility(card));
-    setSelectedCards([...selectedCards, card]);
-  }
-
-  useEffect(() => {
-    shuffleCards();
-  }, []);
-
-  useEffect(() => {
-    setTimeout(() => {
-      compareCards(selectedCards);
-    }, 1000);
-  }, [selectedCards]);
-
   return (
     <div className='container'>
       <section className='cards-container'>
-        <div className='cards'>
-          {cards.map((card) => {
-            return (
-              <div
-                className='card'
-                key={card.id}
-                onClick={() => flipCard(card)}
-              >
-                <div className={`card-inner ${card.visible ? 'flip-card' : ''}`}>
-                  <div className='card-front'></div>
-                  <div className='card-back'>{card.value}</div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
+        <CardsList />
       </section>
     </div>
   );
