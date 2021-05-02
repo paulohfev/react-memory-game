@@ -14,18 +14,6 @@ const App = () => {
     });
   }
 
-  const updateCardVisibility = (card, visible = true) => {
-    return cards.map(c => {
-      if (c.id === card.id) {
-        return {
-          ...c,
-          visible: visible,
-        }
-      }
-      return c;
-    })
-  }
-
   const compareCards = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
 
@@ -49,6 +37,17 @@ const App = () => {
   }
 
   const flipCard = (card) => {
+    const updateCardVisibility = card => {
+      return cards.map(c => {
+        const changedCardVisibility = {
+          ...c,
+          visible: true,
+        };
+
+        return c.id === card.id ? changedCardVisibility : c;
+      })
+    }
+
     setCards(updateCardVisibility(card));
     setSelectedCards([...selectedCards, card]);
   }
