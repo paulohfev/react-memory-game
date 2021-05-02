@@ -14,20 +14,50 @@ const App = () => {
     });
   }
 
+  const updateCardVisibility = (card, visible = true) => {
+    return cards.map(c => {
+      if (c.id === card.id) {
+        return {
+          ...c,
+          visible: visible,
+        }
+      }
+      return c;
+    })
+  }
+
   const compareCards = (selectedCards) => {
-    if (selectedCards.length == 2) {
-      if (selectedCards[0].value == selectedCards[1].value) {
+    console.log(selectedCards)
+    if (selectedCards.length === 2) {
+      if (selectedCards[0].value === selectedCards[1].value) {
         console.log('matched!')
       } else {
-        console.log('not matched!')
+        console.log('not matched!');
+        const flippedCards = cards.map(c => {
+          if (c.id === selectedCards[0].id) {
+            return {
+              ...c,
+              visible: false,
+            }
+          } else if (c.id === selectedCards[1].id) {
+            return {
+              ...c,
+              visible: false,
+            }
+          } else {
+            return c;
+          }
+        });
+
+        setCards(flippedCards);
       }
 
       setSelectedCards([]);
     }
   }
 
-  const flipCard = (event, card) => {
-    event.target.parentNode.style.transform = 'rotateY(180deg)';
+  const flipCard = (card) => {
+    setCards(updateCardVisibility(card));
     setSelectedCards([...selectedCards, card]);
   }
 
@@ -36,25 +66,25 @@ const App = () => {
   }, []);
 
   useEffect(() => {
-    compareCards(selectedCards);
-  }, [selectedCards])
+    setTimeout(() => {
+      compareCards(selectedCards);
+    }, 1000);
+  }, [selectedCards]);
 
   return (
     <div className='container'>
       <section className='cards-container'>
         <div className='cards'>
-          {cards.map((card, index) => {
+          {cards.map((card) => {
             return (
               <div
                 className='card'
-                key={index}
-                onClick={(event) => flipCard(event, card)}
+                key={card.id}
+                onClick={() => flipCard(card)}
               >
-                <div className='card-inner'>
+                <div className={`card-inner ${card.visible ? 'flip-card' : ''}`}>
                   <div className='card-front'></div>
-                  <div className={`card-back ${card.visible ? 'flip-card' : ''}`}>
-                    {card.value}
-                  </div>
+                  <div className='card-back'>{card.value}</div>
                 </div>
               </div>
             );
