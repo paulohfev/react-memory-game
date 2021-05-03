@@ -29,7 +29,7 @@ const Card = ({
       onClick={() => flipCard(card)}
     >
       <div className={`card-inner ${card.visible ? 'flip-card' : ''}`}>
-        <div className='card-front'></div>
+        <div className='card-front'>&#9733;</div>
         <div className='card-back'>{card.value}</div>
       </div>
     </div>
