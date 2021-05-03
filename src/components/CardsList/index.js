@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import cardsData from '../data/cardsData';
-import Card from './Card';
-import '../App.scss';
+import cardsData from '../../data/cardsData';
+import Card from '../Card';
+import '../../App.scss';
+import './CardsList.scss';
 
 const CardsList = () => {
   const [cards, setCards] = useState(cardsData);
@@ -48,7 +49,7 @@ const CardsList = () => {
   }
 
   return (
-    <div className='cards'>
+    <div className='cards-list'>
       {cards.map((card) => {
         return (
           <Card
