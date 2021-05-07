@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import cardsData from '../../data/cardsData';
 import Card from '../Card';
 import ResetButton from '../ResetButton';
+import ScoreCounter from '../ScoreCounter';
 import shuffleCards from '../../utils/shuffleCards';
 import './Cardslist.scss';
 
@@ -39,10 +40,12 @@ const CardsList = () => {
 
       setSelectedCards([]);
     }
-  }
+  };
 
   return (
     <div>
+      <ScoreCounter cards={cards} />
+
       <div className='cards-list'>
         {cards.map((card) => {
           return (
