@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import cardsData from '../../data/cardsData';
 import Card from '../Card';
+import ResetButton from '../ResetButton';
 import shuffleCards from '../../utils/shuffleCards';
 import './Cardslist.scss';
 
@@ -41,19 +42,23 @@ const CardsList = () => {
   }
 
   return (
-    <div className='cards-list'>
-      {cards.map((card) => {
-        return (
-          <Card
-            card={card}
-            cards={cards}
-            key={card.id}
-            selectedCards={selectedCards}
-            setCards={setCards}
-            setSelectedCards={setSelectedCards}
-          />
-        );
-      })}
+    <div>
+      <div className='cards-list'>
+        {cards.map((card) => {
+          return (
+            <Card
+              card={card}
+              cards={cards}
+              key={card.id}
+              selectedCards={selectedCards}
+              setCards={setCards}
+              setSelectedCards={setSelectedCards}
+            />
+          );
+        })}
+      </div>
+
+      <ResetButton setCards={setCards} />
     </div>
   );
 };
