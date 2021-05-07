@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import cardsData from '../../data/cardsData';
 import Card from '../Card';
 import '../../App.scss';
-import './CardsList.scss';
+import './Cardslist.scss';
 
 const CardsList = () => {
   const [cards, setCards] = useState(cardsData);

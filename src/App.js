@@ -1,5 +1,5 @@
 import React from 'react';
-import CardsList from './components/CardsList/index';
+import CardsList from './components/CardsList';
 import './App.scss';
 
 const App = () => {
