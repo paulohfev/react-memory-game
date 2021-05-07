@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import cardsData from '../../data/cardsData';
 import Card from '../Card';
-import '../../App.scss';
+import shuffleCards from '../../utils/shuffleCards';
 import './Cardslist.scss';
 
 const CardsList = () => {
@@ -17,14 +17,6 @@ const CardsList = () => {
       compareCards(selectedCards);
     }, 1000);
   }, [selectedCards]);
-
-  const shuffleCards = () => {
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-      let randomPos = Math.floor(Math.random() * 12);
-      card.style.order = randomPos;
-    });
-  }
 
   const compareCards = (selectedCards) => {
     const [firstCard, secondCard] = selectedCards;
