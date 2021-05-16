@@ -1,10 +1,11 @@
 .button-container {
-  margin: 20px 0;
+  margin-top: 20px;
 
   .reset-button {
     background-color: #00ced1;
     border: none;
     border-radius: 8px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.4);
     color: #ffffff;
     cursor: pointer;
     font-size: 18px;
