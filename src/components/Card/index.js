@@ -6,7 +6,7 @@ const Card = ({
   cards,
   selectedCards,
   setCards,
-  setSelectedCards 
+  setSelectedCards
 }) => {
   const flipCard = (card) => {
     const updateCardVisibility = card => {
